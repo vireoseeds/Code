@@ -31,13 +31,13 @@ savedData = Range("PlantF").Value
 Range("PlantF").Value = savedData * PFStressUp
 
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Dim PFStressDn As Double: PFStressDn = OpenedDBSource.Range("VDBRef").Offset(idx, 12).Value
 Range("PlantF").Value = savedData * PFStressDn
 
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Range("PlantF").Value = savedData
 
@@ -45,7 +45,7 @@ Range("PlantF").Value = savedData
 Worksheets("Param").IncludeConstRisk.Value = True
 
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Worksheets("Param").IncludeConstRisk.Value = False
 
@@ -58,7 +58,7 @@ Dim MaxDeg As Double: MaxDeg = OpenedDBSource.Range("VDBRef").Offset(idx, 14).Va
 Range("LinearDeg").Value = MinDeg
 Worksheets("Deg Risk").DegradationBox.Value = "Linear"
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Range("LinearDeg").Value = savedData
 Worksheets("Deg Risk").DegradationBox.Value = RiskType
@@ -67,7 +67,7 @@ Select Case RiskType
     Case "Linear":
         Range("LinearDeg").Value = MaxDeg * savedData
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         Range("LinearDeg").Value = savedData
     Case "Multi-Linear"
@@ -76,7 +76,7 @@ Select Case RiskType
         Next i
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         For i = 1 To Range("MultiDeg").Rows.count
             If Range("MultiDeg").Cells(i, 3).Value = 0 Then
@@ -91,7 +91,7 @@ Select Case RiskType
         Next i
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         For i = 1 To Range("SteppedDeg").Rows.count
             If Range("SteppedDeg").Cells(i, 3).Value = 0 Then
@@ -112,7 +112,7 @@ Dim ClimMax As Double: ClimMax = OpenedDBSource.Range("VDBRef").Offset(idx, 16).
 Range("LinearClim").Value = ClimMin
 Worksheets("Clim Risk").ClimateBox.Value = "Linear"
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Range("LinearClim").Value = savedData
 Worksheets("Clim Risk").ClimateBox.Value = RiskType
@@ -121,7 +121,7 @@ Select Case RiskType
     Case "Linear":
         Range("LinearClim").Value = ClimMax * savedData
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         Range("LinearClim").Value = savedData
     Case "Multi-Linear"
@@ -130,7 +130,7 @@ Select Case RiskType
         Next i
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         For i = 1 To Range("MultiClim").Rows.count
             If Range("MultiClim").Cells(i, 3).Value = 0 Then
@@ -145,7 +145,7 @@ Select Case RiskType
         Next i
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         For i = 1 To Range("SteppedClim").Rows.count
             If Range("SteppedClim").Cells(i, 3).Value = 0 Then
@@ -159,7 +159,7 @@ Select Case RiskType
         Range("CycColClim").Cells(4, 1).Value = ClimMax * Range("CycColClim").Cells(4, 1).Value
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         Range("CycColClim").Cells(1, 1).Value = Range("CycColClim").Cells(1, 1).Value / 2
         Range("CycColClim").Cells(4, 1).Value = Range("CycColClim").Cells(4, 1).Value / 2
@@ -168,7 +168,7 @@ Select Case RiskType
         Range("CycExpClim").Cells(4, 1).Value = ClimMax * Range("CycExpClim").Cells(4, 1).Value
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         Range("CycExpClim").Cells(1, 1).Value = Range("CycExpClim").Cells(1, 1).Value / 2
         Range("CycExpClim").Cells(4, 1).Value = Range("CycExpClim").Cells(4, 1).Value / 2
@@ -178,7 +178,7 @@ Select Case RiskType
         Range("CycCurClim").Cells(6, 1).Value = ClimMax * Range("CycCurClim").Cells(6, 1).Value
         
         Call PVal.Launch(True)
-        SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+        SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
         
         Range("CycCurClim").Cells(1, 1).Value = Range("CycCurClim").Cells(1, 1).Value / 2
         Range("CycCurClim").Cells(3, 1).Value = Range("CycCurClim").Cells(3, 1).Value / 2
@@ -191,7 +191,7 @@ Dim OMFlrStress As Double: OMFlrStress = OpenedDBSource.Range("VDBRef").Offset(i
 Range("OMFloor").Value = Range("OMFloor").Value * OMFlrStress
 
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Range("OMFloor").Value = savedData
 
@@ -201,7 +201,7 @@ Dim SGAFlrStress As Double: SGAFlrStress = OpenedDBSource.Range("VDBRef").Offset
 Range("SGAFloor").Value = Range("SGAFloor").Value * SGAFlrStress
 
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 Range("SGAFloor").Value = savedData
 
@@ -217,7 +217,7 @@ Range("Losses").Cells(1, 1).Value = Loss1Stress * Loss1
 Range("Losses").Cells(2, 1).Value = Loss2Stress * Loss2
 
 Call PVal.Launch(True)
-SD = SD + WorksheetFunction.Power(Range("VireoRatios").Cells(1, 1).Value, 2) - AvgCropsYield2
+SD = SD + WorksheetFunction.Power(CheckCF(Range("VireoRatios").Cells(1, 1).Value), 2) - AvgCropsYield2
 
 'Range("Losses").Cells(1, 1).Value = 0.8 * Loss1
 'Range("Losses").Cells(2, 1).Value = 0.8 * Loss2
@@ -230,7 +230,7 @@ Range("Losses").Cells(2, 1).Value = Loss2
 
 Call DB.CloseDBNoSave(OpenedDB, VireoDBFileName)
 
-SD = Math.Sqr(SD / 11)
+SD = Math.Sqr(WorksheetFunction.Max(SD, 0.000001) / 11)
 
 Range("RiskIndicator").Value = Round(1 / (1 + AvgCropsYield0 / SD), 2)
 
@@ -239,3 +239,34 @@ Application.ScreenUpdating = True
 Call PVal.Launch(True)
 
 End Sub
+
+Private Function CheckCF(CurrentReturn As Double) As Double
+
+'Check if 2 year sliding accumulated cash is above an acceptable threshold
+Dim wsCF As Worksheet: Set wsCF = Worksheets("CF")
+Dim SlidingCash As Double: SlidingCash = 0#
+'Threshold is 5% of estimated project size
+Dim Threshold As Double: Threshold = -Round(0.03 * Range("TotalCoinNotional").Value / Sheets("Summary").Range("D10").Value, 2)
+Dim i As Integer
+
+For i = 5 To 12
+    SlidingCash = SlidingCash + wsCF.Cells(48, i).Value
+Next i
+
+If SlidingCash < Threshold Then GoTo NotEnoughCash
+
+Dim nCol As Integer: nCol = 13
+
+While wsCF.Cells(2, nCol).Value <> ""
+    SlidingCash = SlidingCash + wsCF.Cells(48, nCol).Value - wsCF.Cells(48, nCol - 4).Value
+    If SlidingCash < Threshold Then GoTo NotEnoughCash
+    nCol = nCol + 1
+Wend
+
+CheckCF = CurrentReturn
+Exit Function
+
+NotEnoughCash:
+CheckCF = 0#
+
+End Function
